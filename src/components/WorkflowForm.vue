@@ -62,9 +62,25 @@
       valid: false,
       loading: false,
       parameters: {},
-      formArr: []
+      //formArr: []
     }),
 
+    computed: {
+
+      formArr: function () {
+        if(this.workflow) {
+          let temp = []
+          this.workflow.spec.arguments.parameters.forEach((item) => {
+              temp.push(this.parseComponent(item).props["placeholder"]);
+          });
+          console.log(temp)
+          return temp;
+        }
+        else {
+          return [];
+        }
+      }
+    },
     mounted: function () {
       console.log(this.workflow);
     },
