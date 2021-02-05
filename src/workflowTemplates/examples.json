@@ -1,0 +1,98 @@
+[{
+   "apiVersion": "argoproj.io/v1alpha1",
+   "kind": "WorkflowTemplate",
+   "metadata": {
+      "name": "hello-world",
+      "labels": {
+          "description": "An example hello world workflow",
+          "version": "v0.1.0"
+      }
+   },
+   "spec": {
+      "entrypoint": "whalesay-template",
+      "serviceAccountName": "argo",
+      "arguments": {
+         "parameters": [
+            {
+               "name": "textfield",
+               "value": "{\"component\": \"v-text-field\", \"props\":{\"label\": \"message\", \"placeholder\":\"hello world\", \"clearable\": true}}"
+            },
+            {
+               "name": "combobox",
+               "value": "{\"component\": \"v-combobox\", \"props\":{\"items\": [\"Hello\", \"goodbye\"], \"label\": \"select\"}}"
+            },
+            {
+               "name": "basic",
+               "value": "no component"
+            }
+         ]
+      },
+      "templates": [
+         {
+            "name": "whalesay-template",
+            "inputs": {
+               "parameters": [
+                  {
+                     "name": "message"
+                  }
+               ]
+            },
+            "container": {
+               "image": "docker/whalesay",
+               "command": [
+                  "cowsay"
+               ],
+               "args": [
+                  "{{inputs.parameters.message}}"
+               ]
+            }
+         }
+      ]
+   }
+},
+{
+   "apiVersion": "argoproj.io/v1alpha1",
+   "kind": "WorkflowTemplate",
+   "metadata": {
+      "name": "hello-world-2",
+      "labels": {
+          "description": "An example hello world workflow"
+      }
+   },
+   "spec": {
+      "entrypoint": "whalesay-template",
+      "serviceAccountName": "argo",
+      "arguments": {
+         "parameters": [
+            {
+               "name": "textfield",
+               "value": "{\"component\": \"v-text-field\", \"props\":{\"label\": \"message\", \"placeholder\":\"hello world\", \"clearable\": true}}"
+            }
+         ]
+      },
+      "templates": [
+         {
+            "name": "whalesay-template",
+            "inputs": {
+               "parameters": [
+                  {
+                     "name": "message"
+                  }
+               ]
+            },
+            "container": {
+               "image": "docker/whalesay",
+               "command": [
+                  "cowsay"
+               ],
+               "args": [
+                  "{{inputs.parameters.message}}"
+               ]
+            }
+         }
+      ]
+   }
+}
+
+
+]
