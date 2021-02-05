@@ -87,10 +87,6 @@
           }
           return w;
       },
-      logFormArr(){
-        console.log(this.formArr);
-
-      },
       parseComponent (item) {
         try {
           let tmp = JSON.parse(item.value);
