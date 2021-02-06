@@ -98,7 +98,13 @@
           delete w.metadata.name;
           if (parameters.length > 0) {
               for (let i = 0; i < parameters.length; i++) {
-                w.spec.arguments.parameters[i].value = parameters[i];
+                if (parameters[i]) {
+                  w.spec.arguments.parameters[i].value = parameters[i];
+                }
+                else {
+
+                  w.spec.arguments.parameters[i].value = "";
+                }
               }
           }
           return w;
