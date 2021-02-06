@@ -13,7 +13,7 @@
     name: 'WorkflowSelect',
     props: {
       workflows: Array,
-      workflow: Object,
+      workflowSelect: Object,
     },
     data: () => ({
       select: null,
@@ -48,7 +48,7 @@
           console.log("previous selection: " + oldVal.metadata.name);
         }
         console.log("current selection: " + newVal.metadata.name);
-        this.$emit('update:workflow', newVal);
+        this.$emit('update:workflowSelect', newVal);
       }
     }
   }

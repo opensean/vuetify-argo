@@ -53,6 +53,7 @@
     name: 'WorkflowForm',
     props: {
       workflow: Object,
+      workflowSubmit: Object
     },
     //components: { VTextField},
     data: () => ({	
@@ -88,7 +89,8 @@
       submit () {
         this.loading = true;
         console.log(this.formArr);
-        console.log(this.makeWorkflow(this.workflow, this.formArr));
+        let w = this.makeWorkflow(this.workflow, this.formArr);
+        this.$emit('update:workflowSubmit', w);
         setTimeout(() => (this.loading = false), 2000)
       },
       makeWorkflow (workflow, parameters) {

@@ -38,15 +38,15 @@
     </v-app-bar>
 
     <v-main>
-      <workflow :workflows="examples" :rawWorkflow.sync="rawWorkflow"></workflow>
+      <workflow :workflows="examples" :workflowSubmit.sync="workflow" :workflowSelect.sync="workflow"></workflow>
       <v-container fluid>
         <v-card
-          v-if="rawWorkflow">
+          v-if="workflow">
             <v-card-title>
             Raw JSON
             </v-card-title>
             <v-card-text>
-              <vue-json-pretty :data="rawWorkflow"> </vue-json-pretty>
+              <vue-json-pretty :data="workflow"> </vue-json-pretty>
             </v-card-text>
         </v-card>
       </v-container>
@@ -70,7 +70,7 @@ export default {
 
   data: () => ({
     examples: examples,
-    rawWorkflow: null,
+    workflow: null,
   }),
 };
 </script>

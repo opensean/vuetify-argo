@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <WorkflowSelect :workflows="workflows" :workflow.sync="workflow"/>
-    <WorkflowForm :workflow="workflow"/>
+    <WorkflowSelect :workflows="workflows" :workflowSelect.sync="workflow"/>
+    <WorkflowForm :workflow="workflow" :workflowSubmit.sync="submitted"/>
   </v-container> 
 </template>
 
@@ -13,7 +13,8 @@
     name: 'Workflow',
     props: {
       workflows: Array,
-      rawWorkflow: Object,
+      workflowSelect: Object,
+      workflowSubmit: Object,
     },
     components: {
       WorkflowSelect,
@@ -21,6 +22,7 @@
     },
     data: () => ({
       workflow: null,
+      submitted: null,
     }),
 
     mounted: function () {
@@ -29,7 +31,10 @@
     },
     watch: {
       workflow: function(newVal){
-        this.$emit('update:rawWorkflow', newVal);
+        this.$emit('update:workflowSelect', newVal);
+      },
+      submitted: function(newVal){
+        this.$emit('update:workflowSubmit', newVal);
       }
     }
   }
