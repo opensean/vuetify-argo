@@ -15,15 +15,15 @@
          "parameters": [
             {
                "name": "textfield",
-               "value": "{\"component\": \"v-text-field\", \"props\":{\"label\": \"message\", \"placeholder\":\"hello world\", \"clearable\": true}}"
+               "value": "{\"component\": \"v-text-field\", \"props\":{\"label\": \"textfield\", \"placeholder\":\"hello world\", \"clearable\": true}}"
             },
             {
                "name": "combobox",
-               "value": "{\"component\": \"v-combobox\", \"props\":{\"items\": [\"Hello\", \"goodbye\"], \"label\": \"select\"}}"
+               "value": "{\"component\": \"v-combobox\", \"props\":{\"items\": [\"Hello\", \"goodbye\"], \"label\": \"combobox\"}}"
             },
             {
                "name": "basic",
-               "value": "no component"
+               "value": "if no component spec is provided a v-text-field will be used"
             }
          ]
       },
@@ -66,7 +66,7 @@
          "parameters": [
             {
                "name": "textfield",
-               "value": "{\"component\": \"v-text-field\", \"props\":{\"label\": \"message\", \"placeholder\":\"hello world\", \"clearable\": true}}"
+               "value": "{\"component\": \"v-text-field\", \"props\":{\"label\": \"textfield\", \"placeholder\":\"hello world\", \"clearable\": true}}"
             }
          ]
       },

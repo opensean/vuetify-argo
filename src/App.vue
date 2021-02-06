@@ -38,23 +38,39 @@
     </v-app-bar>
 
     <v-main>
-      <Workflow/>
+      <workflow :workflows="examples" :rawWorkflow.sync="rawWorkflow"></workflow>
+      <v-container fluid>
+        <v-card
+          v-if="rawWorkflow">
+            <v-card-title>
+            Raw JSON
+            </v-card-title>
+            <v-card-text>
+              <vue-json-pretty :data="rawWorkflow"> </vue-json-pretty>
+            </v-card-text>
+        </v-card>
+      </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import Workflow from './components/Workflow';
+import examples from '@/workflowTemplates/examples.json'
+import VueJsonPretty from 'vue-json-pretty';
+import 'vue-json-pretty/lib/styles.css';
 
 export default {
   name: 'App',
 
   components: {
     Workflow,
+    VueJsonPretty
   },
 
   data: () => ({
-    //
+    examples: examples,
+    rawWorkflow: null,
   }),
 };
 </script>
