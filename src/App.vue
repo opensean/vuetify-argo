@@ -38,17 +38,42 @@
     </v-app-bar>
 
     <v-main>
-      <workflow :workflows="examples" :workflowSubmit.sync="workflow" :workflowSelect.sync="workflow"></workflow>
+      <workflow :workflows="examples" :workflowSubmit.sync="workflowSubmit" :workflowSelect.sync="workflowSelect"></workflow>
       <v-container fluid>
-        <v-card
-          v-if="workflow">
-            <v-card-title>
-            Raw JSON
-            </v-card-title>
-            <v-card-text>
-              <vue-json-pretty :data="workflow"> </vue-json-pretty>
-            </v-card-text>
-        </v-card>
+        <v-row v-if="workflowSelect">
+          <v-col>
+            <v-card
+              height="100%">
+                <v-card-title>
+                Input JSON
+                </v-card-title>
+                <v-card-text>
+                  <vue-json-pretty :data="workflowSelect"> </vue-json-pretty>
+                </v-card-text>
+            </v-card>
+          </v-col>
+          <v-col>
+            <v-card
+              height="100%"
+              v-if="workflowSubmit">
+                <v-card-title>
+                Output JSON
+                </v-card-title>
+                <v-card-text>
+                  <vue-json-pretty :data="workflowSubmit"> </vue-json-pretty>
+                </v-card-text>
+            </v-card>
+            <v-card
+              height="100%"
+              v-else>
+                <v-card-title>
+                Click submit to view output
+                </v-card-title>
+                <v-card-text>
+                </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
     </v-main>
   </v-app>
@@ -70,7 +95,13 @@ export default {
 
   data: () => ({
     examples: examples,
-    workflow: null,
+    workflowSelect: null,
+    workflowSubmit: null,
   }),
+  watch: {
+    workflowSelect: function(){
+      this.workflowSubmit = null;
+    }
+  }
 };
 </script>
