@@ -58,6 +58,9 @@
               v-if="workflowSubmit">
                 <v-card-title>
                 Output JSON
+                <v-chip class="ml-2">
+                  {{ lastUpdate }}
+                </v-chip>
                 </v-card-title>
                 <v-card-text>
                   <vue-json-pretty :data="workflowSubmit"> </vue-json-pretty>
@@ -97,10 +100,29 @@ export default {
     examples: examples,
     workflowSelect: null,
     workflowSubmit: null,
+    lastUpdate: null,
   }),
+
+  methods: {
+    timeStamp () {
+      // https://stackoverflow.com/questions/10211145/getting-current-date-and-time-in-javascript
+      var currentdate = new Date(); 
+      var datetime = "Updated: " + currentdate.getDate() + "/"
+                      + (currentdate.getMonth()+1)  + "/" 
+                      + currentdate.getFullYear() + " @ "  
+                      + currentdate.getHours() + ":"  
+                      + currentdate.getMinutes() + ":" 
+                      + currentdate.getSeconds();
+      return datetime;
+    }
+  },
+
   watch: {
     workflowSelect: function(){
       this.workflowSubmit = null;
+    },
+    workflowSubmit: function(){
+      this.lastUpdate = this.timeStamp();
     }
   }
 };
