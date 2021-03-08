@@ -38,6 +38,9 @@
     </v-app-bar>
 
     <v-main>
+      <v-container fluid>
+        <workflow-editor></workflow-editor>
+      </v-container>
       <workflow :workflows="examples" :workflowSubmit.sync="workflowSubmit" :workflowSelect.sync="workflowSelect"></workflow>
       <v-container fluid>
         <v-row v-if="workflowSelect">
@@ -84,16 +87,18 @@
 
 <script>
 import Workflow from './components/Workflow';
-import examples from '@/workflowTemplates/examples.json'
+import examples from '@/workflowTemplates/examples.json';
 import VueJsonPretty from 'vue-json-pretty';
 import 'vue-json-pretty/lib/styles.css';
+import WorkflowEditor from './components/WorkflowEditor';
 
 export default {
   name: 'App',
 
   components: {
     Workflow,
-    VueJsonPretty
+    VueJsonPretty,
+    WorkflowEditor
   },
 
   data: () => ({
